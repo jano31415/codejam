@@ -13,9 +13,10 @@ def solve(grid, N):
         rc_tup = rc_dict[i]
         if len(rc_tup) <= 1:
             continue
-        matched = max_match(rc_tup)
+        matched, sol = max_match(rc_tup)
         notmatched += len(rc_tup) - matched
     return notmatched
+
 
 def max_match(rc_tup):
     # row column combinations are edges between rows and columns
@@ -25,7 +26,7 @@ def max_match(rc_tup):
     V, E = bipartite_to_flow(A, B, E)
     cap = {e: 1 for e in E}
     neighbourhood = get_neighbourhood(E, V)
-    res = max_match(V, E, neighbourhood, cap)
+    res = push_relabel(V, E, neighbourhood, cap)
     return res
 
 def push_relabel(V, E, neighbourhood, cap, s="s", t="t"):
@@ -112,9 +113,6 @@ def get_neighbourhood(E, V):
         neighbourhood[u].append(v)
     return neighbourhood
 
-
-def max_match():
-    return 1
 
 def bipartite_to_flow(A, B, E):
     V = A + B + ["s", "t"]
