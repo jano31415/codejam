@@ -1,0 +1,11 @@
+4
+3 1
+cda
+2 3
+bc
+5 5
+abcdd
+1 5
+d
+8 26
+zyxzzzcc
