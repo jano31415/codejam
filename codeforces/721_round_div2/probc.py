@@ -11,12 +11,15 @@ def solve(N, numbers):
         dyn[x] = tmp + (i+1)
     return tot
 
-
+import io
+import os
 if __name__ == "__main__":
-    T = int(input())
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+    T = int(input().decode().strip())
     for t in range(1, T+1):
-        N = int(input())
-        numbers = [int(x) for x in input().split(" ")]
+        N = int(input().decode().strip())
+        # numbers = [int(x) for x in input().split(" ")]
+        numbers = [int(x) for x in input().decode().strip().split(" ")]
         res = solve(N, numbers)
         print(str(res), flush=True)
 
