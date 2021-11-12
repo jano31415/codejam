@@ -1,0 +1,11 @@
+5
+2
+aa
+5
+cbabb
+8
+cacabccc
+9
+babbaccac
+6
+abbaca
