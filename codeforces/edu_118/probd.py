@@ -12,41 +12,23 @@ def solve(n, seq):
             dynup[1] = (dynup[1] + dynup[1])%mod
         elif x == 1:
             # dyndown[3] = (dyndown[3] + dynup[1])%mod
-            dyndown[2] = (dyndown[2] + dyndown[1])%mod
+            dyndown[2] = (dyndown[2] + dyndown[2] + dyndown[1])%mod
             dynup[2] = (dynup[2] + dynup[2])%mod
             dynup[0] = (dynup[0] + dynup[0] + 1)%mod
 
         else:
             # dyndown[x+2] = (dynup[x] + dyndown[x+2])%mod
-            dyndown[x+1] = (dyndown[x] + dyndown[x+1])%mod
+            dyndown[x+1] = (dyndown[x+1] + dyndown[x+1]+ dyndown[x])%mod
             # dyndown[x-1] if we add x and mex is x-1 then this is a dynup
             dynup[x-1] = (dynup[x-1] + dynup[x-1] + dyndown[x-1])%mod
             dynup[x+1] = (dynup[x+1] + dynup[x+1])%mod
+    ans = 0
+    for x in dynup:
+        ans = (ans +x )%mod
+    for x in dyndown:
+        ans = (ans +x )%mod
 
-
-    return sum(dynup) + sum(dyndown)
-
-
-
-
-def binary_search_leftmost(diffs, h):
-    left = 1
-    right = h
-    while left < right:
-        middle = (left + right) // 2
-        if check_smaller(diffs, middle, h):
-            left = middle + 1
-        else:
-            right = middle
-    return left
-
-def check_smaller(diffs, middle, h):
-    cum = 0
-    for d in diffs:
-        cum += min(d, middle)
-    return cum < h
-
-
+    return ans
 
 
 import os
