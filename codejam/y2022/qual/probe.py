@@ -15,24 +15,27 @@ def solve2(n,k):
     all_rooms = list(range(1, n+1))
     np.random.shuffle(all_rooms)
     unknown_rooms = set(all_rooms)
-    passages = [0]*(n+1)
-    passages[room] = npassage
+    tdeg = {}
+    wdeg = {}
     unknown_rooms.remove(room)
-    for guess in range(k):
-        # print("W", flush=True)
-        # room, npassage = [int(x) for x in input().split(" ")]
-        # passages[room] = npassage
-        # if room in unknown_rooms:
-        #     unknown_rooms.remove(room)
+    for guess in range(k//2):
+        print("W", flush=True)
+        room, npassage = [int(x) for x in input().split(" ")]
+        wdeg[room] = npassage
+        if room in unknown_rooms:
+            unknown_rooms.remove(room)
         new_room = unknown_rooms.pop()
         print(f"T {new_room}", flush=True)
         room, npassage = [int(x) for x in input().split(" ")]
-        passages[room] = npassage
+        tdeg[room] = npassage
         if room in unknown_rooms:
             unknown_rooms.remove(room)
     max_sol = int((n**2)/2 * (2/3)) + 1
     min_sol = int((n/2) * (4/3)) - 1
-    sol = (sum(passages) / (n-len(unknown_rooms)) * n )// 2
+    t_avg = sum(tdeg.values())/len(tdeg)
+    sol = (n-len(wdeg)) * t_avg
+    sol += sum(wdeg.values())
+    sol = sol//2
     sol = np.clip(sol, min_sol, max_sol)
     print(f"E {int(sol)}", flush=True)
     # input()
