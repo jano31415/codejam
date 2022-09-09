@@ -1,0 +1,14 @@
+12
+forces
+abba
+cccac
+caccc
+ccccac
+cacccc
+aafbcaa
+aafdcaa
+aafbcaaa
+aaaaaa
+daaaaa
+aaaaad
+
