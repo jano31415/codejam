@@ -9,7 +9,10 @@ def solve(a,b,c):
             return 0
         return 2*(c//b) - 1
     c = c-a
-    return 2*(c//b) + 1
+    singles = 1
+    if c%b >= a:
+        singles+=1
+    return 2*(c//b) + singles
 
 
 import os
