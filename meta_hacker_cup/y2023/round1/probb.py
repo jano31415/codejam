@@ -33,6 +33,8 @@ def solve(P, sieve):
                 prime_decomp.append(pi)
             if P == 1:
                 break
+    if P != 1:
+        return -1
     s=41
     if sum(prime_decomp) == s:
         return prime_decomp
